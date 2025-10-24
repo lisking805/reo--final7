@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>荣成俚岛·乡村康养</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        // 配置Tailwind自定义主题
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32',     // 绿色-代表田园
+                        secondary: '#1976D2',   // 蓝色-代表海洋
+                        accent: '#F57C00',      // 橙色-代表活力
+                        neutral: '#F5F5F5',     // 浅灰-背景
+                        dark: '#263238'         // 深灰-文字
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            }
+            .transition-custom {
+                transition: all 0.3s ease-in-out;
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .rating-star {
+                cursor: pointer;
+                transition: color 0.2s;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans text-dark bg-white">
+    <!-- 导航栏 -->
+    <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-sm shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-2">
+                <i class="fa fa-leaf text-primary text-2xl"></i>
+                <span class="text-xl font-bold text-primary">俚岛康养</span>
+            </a>
+            
+            <!-- 桌面导航 -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="font-medium hover:text-primary transition-custom">首页</a>
+                <a href="#packages" class="font-medium hover:text-primary transition-custom">康养套餐</a>
+                <a href="#farm" class="font-medium hover:text-primary transition-custom">农场认养</a>
+                <a href="#experiences" class="font-medium hover:text-primary transition-custom">场景体验</a>
+                <a href="#about" class="font-medium hover:text-primary transition-custom">关于我们</a>
+                <a href="#reviews" class="font-medium hover:text-primary transition-custom">用户评价</a>
+                <a href="#contact" class="font-medium hover:text-primary transition-custom">联系我们</a>
+            </nav>
+            
+            <!-- 预约按钮 -->
+            <a href="#booking" class="hidden md:block bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-full transition-custom shadow-md hover:shadow-lg">
+                立即预约
+            </a>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="menuBtn" class="md:hidden text-dark text-xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white shadow-lg absolute w-full">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="#home" class="py-2 border-b border-gray-100 hover:text-primary transition-custom">首页</a>
+                <a href="#packages" class="py-2 border-b border-gray-100 hover:text-primary transition-custom">康养套餐</a>
+                <a href="#farm" class="py-2 border-b border-gray-100 hover:text-primary transition-custom">农场认养</a>
+                <a href="#experiences" class="py-2 border-b border-gray-100 hover:text-primary transition-custom">场景体验</a>
+                <a href="#about" class="py-2 border-b border-gray-100 hover:text-primary transition-custom">关于我们</a>
+                <a href="#reviews" class="py-2 border-b border-gray-100 hover:text-primary transition-custom">用户评价</a>
+                <a href="#contact" class="py-2 hover:text-primary transition-custom">联系我们</a>
+                <a href="#booking" class="bg-primary text-white px-5 py-2 rounded-full text-center shadow-md">
+                    立即预约
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 首页Banner -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://picsum.photos/id/15/1920/1080" alt="乡村康养环境" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-dark/40"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 z-10 text-center text-white">
+            <h1 class="text-[clamp(2.5rem,6vw,4rem)] font-bold mb-6 leading-tight text-shadow">
+                荣成俚岛·乡村康养
+            </h1>
+            <p class="text-[clamp(1rem,2vw,1.25rem)] mb-8 max-w-2xl mx-auto text-shadow">
+                在田野与海岸间，找回生活的松弛感，体验自然疗愈的力量
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#packages" class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full text-lg font-medium transition-custom shadow-lg hover:shadow-xl">
+                    探索康养套餐
+                </a>
+                <a href="#farm" class="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border border-white/40 px-8 py-3 rounded-full text-lg font-medium transition-custom shadow-lg hover:shadow-xl">
+                    认领我的地块
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+            <a href="#features" class="text-2xl">
+                <i class="fa fa-angle-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- 核心优势 -->
+    <section id="features" class="py-20 bg-neutral">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">我们的康养优势</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">在俚岛乡村，我们打造独特的康养体验，让每一位来访者都能找到内心的平静与身体的活力</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 优势1 -->
+                <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-custom p-8 transform hover:-translate-y-1">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-tree text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">原生态环境</h3>
+                    <p class="text-gray-600 mb-6">年均PM2.5低于30，负氧离子含量高，海水清洁度达国家一类标准，是天然的"洗肺之地"</p>
+                    
+                    </a>
+                </div>
+                
+                <!-- 优势2 -->
+                <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-custom p-8 transform hover:-translate-y-1">
+                    <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-calendar-check-o text-secondary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">全周期服务</h3>
+                    <p class="text-gray-600 mb-6">覆盖短期体验、中长期旅居、定制化康养，满足不同人群的多样化健康需求</p>
+            
+                    </a>
+                </div>
+                
+                <!-- 优势3 -->
+                <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-custom p-8 transform hover:-translate-y-1">
+                    <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-heart-o text-accent text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">场景化融合</h3>
+                    <p class="text-gray-600 mb-6">农场劳作、海边露营、村落慢生活，让康养不止于"养"，更在于体验与参与</p>
+                    
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 康养套餐 -->
+    <section id="packages" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">特色康养套餐</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">根据不同人群需求，定制专属康养方案，让健康与快乐同行</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 套餐1：老年长居康养 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom transform hover:-translate-y-1">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://picsum.photos/id/28/800/600" alt="老年长居康养" class="w-full h-full object-cover transition-custom hover:scale-105">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">老年长居康养</h3>
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">1个月起</span>
+                        </div>
+                        <p class="text-gray-600 mb-6">为老年人提供长期健康照护与生活陪伴，在乡村环境中安享晚年</p>
+                        
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>适老化住宿（海草房改造）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>定制食疗（农场直供食材）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>日常健康监测与中医问诊</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>每日晨练与农场轻劳作</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="flex justify-between items-center mb-6">
+                            <div>
+                                <span class="text-2xl font-bold">3800元</span>
+                                <span class="text-gray-500">/月/人</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex text-accent mr-2">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-half-o"></i>
+                                </div>
+                                <span class="text-sm text-gray-500">(28条评价)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-3">
+                           
+                            <a href="#booking" class="flex-1 bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-center transition-custom">
+                                立即预约
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 套餐2：上班族短途疗愈 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom transform hover:-translate-y-1">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://picsum.photos/id/110/800/600" alt="上班族短途疗愈" class="w-full h-full object-cover transition-custom hover:scale-105">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">上班族短途疗愈</h3>
+                            <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm font-medium">2-3天</span>
+                        </div>
+                        <p class="text-gray-600 mb-6">为都市白领提供减压放松方案，远离喧嚣，重获工作活力</p>
+                        
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-secondary mt-1 mr-3"></i>
+                                <span>静谧住宿（隔音设计）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-secondary mt-1 mr-3"></i>
+                                <span>减压餐与助眠汤品</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-secondary mt-1 mr-3"></i>
+                                <span>肩颈理疗与正念冥想课</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-secondary mt-1 mr-3"></i>
+                                <span>星空冥想与农场五感体验</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="flex justify-between items-center mb-6">
+                            <div>
+                                <span class="text-2xl font-bold">680元</span>
+                                <span class="text-gray-500">/2天1晚</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex text-accent mr-2">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <span class="text-sm text-gray-500">(45条评价)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-3">
+                           
+                            <a href="#booking" class="flex-1 bg-secondary hover:bg-secondary/90 text-white px-4 py-2 rounded-lg text-center transition-custom">
+                                立即预约
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 套餐3：家庭康养套餐 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom transform hover:-translate-y-1">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://picsum.photos/id/26/800/600" alt="家庭康养套餐" class="w-full h-full object-cover transition-custom hover:scale-105">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">家庭康养套餐</h3>
+                            <span class="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-medium">3-7天</span>
+                        </div>
+                        <p class="text-gray-600 mb-6">适合全家共同参与的康养体验，增进亲情，共享健康生活</p>
+                        
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-accent mt-1 mr-3"></i>
+                                <span>家庭房住宿与亲子食疗</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-accent mt-1 mr-3"></i>
+                                <span>家庭健康咨询与体质评估</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-accent mt-1 mr-3"></i>
+                                <span>亲子农场劳作与采摘</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-accent mt-1 mr-3"></i>
+                                <span>三代人共学非遗与家庭活动</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="flex justify-between items-center mb-6">
+                            <div>
+                                <span class="text-2xl font-bold">1580元</span>
+                                <span class="text-gray-500">/3天2晚（2大1小）</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="flex text-accent mr-2">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </div>
+                                <span class="text-sm text-gray-500">(37条评价)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-3">
+                           
+                            <a href="#booking" class="flex-1 bg-accent hover:bg-accent/90 text-white px-4 py-2 rounded-lg text-center transition-custom">
+                                立即预约
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 线上认养农场 -->
+    <section id="farm" class="py-20 bg-neutral">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">线上认养农场</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">线上认养，线下收获，让您的康养之旅从一颗种子开始</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-10">
+                <!-- 农场认养介绍 -->
+                <div class="lg:w-1/2">
+                    <div class="bg-white p-8 rounded-xl shadow-md h-full">
+                        <h3 class="text-2xl font-bold mb-6">认养流程</h3>
+                        
+                        <div class="space-y-8">
+                            <div class="flex">
+                                <div class="flex-shrink-0 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">1</div>
+                                <div>
+                                    <h4 class="text-xl font-semibold mb-2">选择认养地块</h4>
+                                    <p class="text-gray-600">从疗愈小菜园、康养果树或静心花园中选择您想认养的地块类型</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex">
+                                <div class="flex-shrink-0 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">2</div>
+                                <div>
+                                    <h4 class="text-xl font-semibold mb-2">线上照料互动</h4>
+                                    <p class="text-gray-600">通过浇水、施肥等操作参与作物生长，我们会同步进行线下照料</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex">
+                                <div class="flex-shrink-0 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">3</div>
+                                <div>
+                                    <h4 class="text-xl font-semibold mb-2">收获与兑换</h4>
+                                    <p class="text-gray-600">作物成熟后，可亲自采摘或兑换康养服务，享受劳动成果</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-10">
+                            <h3 class="text-2xl font-bold mb-6">认养权益</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fa fa-star text-accent mt-1 mr-3"></i>
+                                    <span>实时查看作物生长状态，每周更新实景照片</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-star text-accent mt-1 mr-3"></i>
+                                    <span>收获季节可亲自采摘，感受劳作乐趣</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-star text-accent mt-1 mr-3"></i>
+                                    <span>兑换专属康养服务折扣与体验活动</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-star text-accent mt-1 mr-3"></i>
+                                    <span>获得作物食疗价值指导，搭配康养饮食</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mt-10 text-center">
+                            <a href="farm-detail.html" class="inline-block bg-gray-100 hover:bg-gray-200 text-dark px-6 py-3 rounded-full text-lg font-medium transition-custom mr-4">
+                                了解详情
+                            </a>
+                            <a href="#booking" class="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-full text-lg font-medium transition-custom shadow-md hover:shadow-lg">
+                                免费领取体验田
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 认养地块展示 -->
+                <div class="lg:w-1/2">
+                    <div class="bg-white p-8 rounded-xl shadow-md h-full">
+                        <a class="text-2xl font-bold mb-6" href="https://lisking805.github.io/reo-six/">认养地块选择</a>
+                        
+                        <!-- 地块选择标签 -->
+                        <div class="flex flex-wrap gap-3 mb-8">
+                            <button class="farm-tab active px-4 py-2 rounded-full bg-primary text-white font-medium transition-custom">疗愈小菜园</button>
+                            <button class="farm-tab px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 font-medium transition-custom">康养果树</button>
+                            <button class="farm-tab px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 font-medium transition-custom">静心花园</button>
+                        </div>
+                        
+                        <!-- 地块展示 -->
+                        <div class="farm-content active">
+                            <div class="border rounded-lg overflow-hidden mb-6">
+                                <img src="https://picsum.photos/id/137/800/500" alt="疗愈小菜园" class="w-full h-64 object-cover">
+                                <div class="p-4 bg-gray-50 border-t">
+                                    <p class="text-sm text-gray-500">实景更新于：2025年10月15日</p>
+                                    <p class="text-sm text-gray-500">对应位置：农场东侧3号区</p>
+                                </div>
+                            </div>
+                            
+                            <h4 class="text-xl font-semibold mb-3">10㎡疗愈小菜园</h4>
+                            <p class="text-gray-600 mb-4">种植菠菜、生菜等速生蔬菜，生长周期20-30天，适合体验农耕乐趣</p>
+                            
+                            <div class="mb-6">
+                                <div class="flex justify-between mb-2">
+                                    <span>生长进度</span>
+                                    <span>65%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-primary h-2.5 rounded-full" style="width: 65%"></div>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-2">预计15天后可收获</p>
+                            </div>
+                            
+                            <div class="flex gap-3 mb-6">
+                                <button class="flex-1 bg-gray-100 hover:bg-gray-200 py-2 rounded-lg transition-custom">
+                                    <i class="fa fa-tint mr-2"></i>浇水
+                                </button>
+                                <button class="flex-1 bg-gray-100 hover:bg-gray-200 py-2 rounded-lg transition-custom">
+                                    <i class="fa fa-leaf mr-2"></i>施肥
+                                </button>
+                                <button class="flex-1 bg-gray-100 hover:bg-gray-200 py-2 rounded-lg transition-custom">
+                                    <i class="fa fa-bug mr-2"></i>除虫
+                                </button>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="text-2xl font-bold">680元</span>
+                                    <span class="text-gray-500">/年</span>
+                                </div>
+                                <a href="https://lisking805.github.io/reo-six/" class="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-full transition-custom">
+                                    立即认养
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 场景体验 -->
+    <section id="experiences" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">康养场景体验</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">多元化的体验场景，让康养融入生活的每一个瞬间</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 农场体验 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://picsum.photos/id/133/800/600" alt="农场体验" class="w-full h-full object-cover transition-custom group-hover:scale-105">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-4">农场劳作康养</h3>
+                        <p class="text-gray-600 mb-6">通过适度农事活动，实现身体与心理的双重调节，感受耕耘与收获的喜悦</p>
+                        
+                        <h4 class="font-semibold mb-3">特色体验</h4>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fa fa-circle text-xs text-primary mt-1.5 mr-2"></i>
+                                <span>50分钟轻劳作，专业指导动作</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-circle text-xs text-primary mt-1.5 mr-2"></i>
+                                <span>作物认养·责任疗愈项目</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-circle text-xs text-primary mt-1.5 mr-2"></i>
+                                <span>季节性采摘与食材加工</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <div class="flex text-accent mr-2">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </div>
+                                <span class="text-sm text-gray-500">(19条评价)</span>
+                            </div>
+                            <a href="https://lisking805.github.io/reo-six/" class="inline-block text-primary font-medium hover:text-primary/80 transition-custom">
+                                了解详情 <i class="fa fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 露营活动 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://picsum.photos/id/883/800/600" alt="露营活动" class="w-full h-full object-cover transition-custom group-hover:scale-105">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-4">自然疗愈露营</h3>
+                        <p class="text-gray-600 mb-6">在星空与田野间，实现深度放松，补充自然能量，远离城市喧嚣</p>
+                        
+                        <h4 class="font-semibold mb-3">特色体验</h4>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fa fa-circle text-xs text-secondary mt-1.5 mr-2"></i>
+                                <span>单人静修露营，隔音帐篷配备</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-circle text-xs text-secondary mt-1.5 mr-2"></i>
+                                <span>家庭疗愈露营，含亲子活动</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-circle text-xs text-secondary mt-1.5 mr-2"></i>
+                                <span>星空冥想与自然声音疗愈</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <div class="flex text-accent mr-2">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-half-o"></i>
+                                </div>
+                                <span class="text-sm text-gray-500">(32条评价)</span>
+                            </div>
+                            <a href="https://lisking805.github.io/reo--six2/" class="inline-block text-secondary font-medium hover:text-secondary/80 transition-custom">
+                                了解详情 <i class="fa fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 乡村旅行 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://picsum.photos/id/301/800/600" alt="乡村旅行" class="w-full h-full object-cover transition-custom group-hover:scale-105">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-4">文化康养之旅</h3>
+                        <p class="text-gray-600 mb-6">通过体验村落文化，获得心灵归属感与慢生活节奏，感受传统智慧</p>
+                        
+                        <h4 class="font-semibold mb-3">特色体验</h4>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fa fa-circle text-xs text-accent mt-1.5 mr-2"></i>
+                                <span>村落慢游路线，每日更新</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-circle text-xs text-accent mt-1.5 mr-2"></i>
+                                <span>非遗疗愈课，专注当下</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-circle text-xs text-accent mt-1.5 mr-2"></i>
+                                <span>老村民长寿经验分享会</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <div class="flex text-accent mr-2">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <span class="text-sm text-gray-500">(25条评价)</span>
+                            </div>
+                            <a href="https://lisking805.github.io/reo--six3/" class="inline-block text-accent font-medium hover:text-accent/80 transition-custom">
+                                了解详情 <i class="fa fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="py-20 bg-neutral">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-10">
+                <div class="lg:w-1/2">
+                    <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-6">关于我们的康养理念</h2>
+                    <p class="text-gray-600 mb-6 text-lg">我们是一群充满理想的大学生创业团队，带着对乡村的热爱和对康养的理解，来到荣成俚岛镇，希望通过我们的努力，让更多人体验到乡村康养的魅力。</p>
+                    
+                    <p class="text-gray-600 mb-8">康养不是"治疗疾病"，而是"回归自然的生活方式"。在乡村，劳作是运动，自然是良药，慢下来是最好的疗愈。我们相信，通过与自然的连接、适度的劳作和传统文化的浸润，每个人都能找到属于自己的健康之道。</p>
+                    
+                    <h3 class="text-xl font-bold mb-4">为什么选择俚岛镇？</h3>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker text-primary mt-1 mr-3"></i>
+                            <span>环境优势：年均220天以上空气质量优，海水清洁度国家一类标准</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-heartbeat text-primary mt-1 mr-3"></i>
+                            <span>人文优势：村里老人平均寿命82岁，保留着健康的传统作息</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-home text-primary mt-1 mr-3"></i>
+                            <span>资源优势：独特的海草房建筑，丰富的农产品和海洋资源</span>
+                        </li>
+                    </ul>
+                    
+                    <h3 class="text-xl font-bold mb-4">我们的专业团队</h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-2 overflow-hidden">
+                                <img src="https://picsum.photos/id/64/200/200" alt="张医生" class="w-full h-full object-cover">
+                            </div>
+                            <h4 class="font-medium">张医生</h4>
+                            <p class="text-sm text-gray-500">中医顾问</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-2 overflow-hidden">
+                                <img src="https://picsum.photos/id/65/200/200" alt="李老师" class="w-full h-full object-cover">
+                            </div>
+                            <h4 class="font-medium">李老师</h4>
+                            <p class="text-sm text-gray-500">冥想指导师</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-2 overflow-hidden">
+                                <img src="https://picsum.photos/id/66/200/200" alt="王阿姨" class="w-full h-full object-cover">
+                            </div>
+                            <h4 class="font-medium">王阿姨</h4>
+                            <p class="text-sm text-gray-500">本地康养顾问</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <a href="https://lisking805.github.io/reo--six5/" class="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-full font-medium transition-custom shadow-md hover:shadow-lg">
+                            了解更多团队故事
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="bg-white p-8 rounded-xl shadow-md h-full">
+                        <h3 class="text-2xl font-bold mb-6">用户康养故事</h3>
+                        
+                        <div class="space-y-8">
+                            <!-- 故事1 -->
+                            <div class="border-b border-gray-100 pb-6">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden mr-4">
+                                        <img src="https://picsum.photos/id/22/100/100" alt="刘叔" class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold">刘叔 · 65岁</h4>
+                                        <p class="text-sm text-gray-500">入住2个月</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-3">"入住2个月，每天去海边散步，参加农场劳作，血压从7.8降到了6.5，睡眠质量也明显改善。这里的空气和食物都是城里比不了的，下个月打算让老伴也一起来。"</p>
+                                <div class="flex text-accent">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- 故事2 -->
+                            <div class="border-b border-gray-100 pb-6">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden mr-4">
+                                        <img src="https://picsum.photos/id/237/100/100" alt="张女士" class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold">张女士 · 32岁</h4>
+                                        <p class="text-sm text-gray-500">周末短途疗愈</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-3">"作为程序员，长期对着电脑导致肩颈问题严重。在这里度过的周末太治愈了，冥想课和理疗让我紧绷的神经得到放松，下次要带团队一起来参加团建疗愈。"</p>
+                                <div class="flex text-accent">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-half-o"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- 故事3 -->
+                            <div>
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden mr-4">
+                                        <img src="https://picsum.photos/id/91/100/100" alt="王先生一家" class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold">王先生一家</h4>
+                                        <p class="text-sm text-gray-500">家庭康养体验</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-3">"带父母和孩子来体验了一周，老人参加了太极班，孩子在农场认识了各种蔬菜，我和妻子则享受了难得的放松时光。这样的家庭活动太有意义了，计划每个季度都来一次。"</p>
+                                <div class="flex text-accent">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <a href="#reviews" class="inline-block text-primary font-medium hover:text-primary/80 transition-custom">
+                                查看更多用户故事 <i class="fa fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 用户评价系统 -->
+    <section id="reviews" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">用户真实评价</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">来自真实体验者的反馈，每一条评价都是我们进步的动力</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-10 mb-16">
+                <!-- 评价表单 -->
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-bold mb-6">分享您的体验</h3>
+                    
+                    <form id="reviewForm">
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-medium mb-3">您的评分</label>
+                            <div class="flex" id="ratingStars">
+                                <i class="fa fa-star text-2xl text-gray-300 rating-star" data-rating="1"></i>
+                                <i class="fa fa-star text-2xl text-gray-300 rating-star" data-rating="2"></i>
+                                <i class="fa fa-star text-2xl text-gray-300 rating-star" data-rating="3"></i>
+                                <i class="fa fa-star text-2xl text-gray-300 rating-star" data-rating="4"></i>
+                                <i class="fa fa-star text-2xl text-gray-300 rating-star" data-rating="5"></i>
+                            </div>
+                            <input type="hidden" id="ratingValue" name="rating" value="0">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="reviewName" class="block text-gray-700 font-medium mb-2">您的姓名</label>
+                            <input type="text" id="reviewName" name="reviewName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-custom" placeholder="请输入您的姓名" required>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="reviewService" class="block text-gray-700 font-medium mb-2">您体验的服务</label>
+                            <select id="reviewService" name="reviewService" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-custom" required>
+                                <option value="">请选择服务类型</option>
+                                <option value="elder">老年长居康养</option>
+                                <option value="worker">上班族短途疗愈</option>
+                                <option value="family">家庭康养套餐</option>
+                                <option value="farm">农场认养</option>
+                                <option value="camping">自然疗愈露营</option>
+                                <option value="culture">文化康养之旅</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="reviewContent" class="block text-gray-700 font-medium mb-2">您的评价</label>
+                            <textarea id="reviewContent" name="reviewContent" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-custom" placeholder="请分享您的真实体验和感受..." required></textarea>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="form-checkbox h-5 w-5 text-primary" required>
+                                <span class="ml-2 text-gray-700">我确认以上评价真实有效</span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg text-lg font-medium transition-custom shadow-md hover:shadow-lg">
+                            提交评价
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- 评价统计 -->
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-bold mb-6">评价统计</h3>
+                    
+                    <div class="flex items-center mb-10">
+                        <div class="text-center mr-8">
+                            <span class="block text-5xl font-bold text-primary">4.7</span>
+                            <div class="flex text-accent justify-center mt-1">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                            </div>
+                            <span class="text-gray-500 mt-1 block">综合评分</span>
+                        </div>
+                        
+                        <div class="flex-1">
+                            <!-- 5星 -->
+                            <div class="flex items-center mb-2">
+                                <span class="w-8 text-sm">5星</span>
+                                <div class="flex-1 mx-3 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-accent h-2 rounded-full" style="width: 72%"></div>
+                                </div>
+                                <span class="w-8 text-sm text-right">72%</span>
+                            </div>
+                            
+                            <!-- 4星 -->
+                            <div class="flex items-center mb-2">
+                                <span class="w-8 text-sm">4星</span>
+                                <div class="flex-1 mx-3 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-accent h-2 rounded-full" style="width: 21%"></div>
+                                </div>
+                                <span class="w-8 text-sm text-right">21%</span>
+                            </div>
+                            
+                            <!-- 3星 -->
+                            <div class="flex items-center mb-2">
+                                <span class="w-8 text-sm">3星</span>
+                                <div class="flex-1 mx-3 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-accent h-2 rounded-full" style="width: 5%"></div>
+                                </div>
+                                <span class="w-8 text-sm text-right">5%</span>
+                            </div>
+                            
+                            <!-- 2星 -->
+                            <div class="flex items-center mb-2">
+                                <span class="w-8 text-sm">2星</span>
+                                <div class="flex-1 mx-3 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-accent h-2 rounded-full" style="width: 1%"></div>
+                                </div>
+                                <span class="w-8 text-sm text-right">1%</span>
+                            </div>
+                            
+                            <!-- 1星 -->
+                            <div class="flex items-center">
+                                <span class="w-8 text-sm">1星</span>
+                                <div class="flex-1 mx-3 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-accent h-2 rounded-full" style="width: 1%"></div>
+                                </div>
+                                <span class="w-8 text-sm text-right">1%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h4 class="text-xl font-semibold mb-4">服务评价分布</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <span class="w-32">老年长居康养</span>
+                            <div class="flex-1 mx-3 bg-gray-200 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 94%"></div>
+                            </div>
+                            <span class="w-10 text-right">4.7</span>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <span class="w-32">上班族短途疗愈</span>
+                            <div class="flex-1 mx-3 bg-gray-200 rounded-full h-2">
+                                <div class="bg-secondary h-2 rounded-full" style="width: 98%"></div>
+                            </div>
+                            <span class="w-10 text-right">4.9</span>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <span class="w-32">家庭康养套餐</span>
+                            <div class="flex-1 mx-3 bg-gray-200 rounded-full h-2">
+                                <div class="bg-accent h-2 rounded-full" style="width: 86%"></div>
+                            </div>
+                            <span class="w-10 text-right">4.3</span>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <span class="w-32">农场认养</span>
+                            <div class="flex-1 mx-3 bg-gray-200 rounded-full h-2">
+                                <div class="bg-purple-500 h-2 rounded-full" style="width: 92%"></div>
+                            </div>
+                            <span class="w-10 text-right">4.6</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <span class="text-gray-500">基于 156 条用户真实评价</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 评价列表 -->
+            <div>
+                <div class="flex justify-between items-center mb-8">
+                    <h3 class="text-2xl font-bold">最新评价</h3>
+                    
+                    <div class="flex gap-3">
+                        <select id="reviewFilter" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-custom">
+                            <option value="all">全部评价</option>
+                            <option value="5">5星评价</option>
+                            <option value="4">4星及以上</option>
+                            <option value="3">3星及以上</option>
+                            <option value="elder">老年长居康养</option>
+                            <option value="worker">上班族短途疗愈</option>
+                            <option value="family">家庭康养套餐</option>
+                        </select>
+                        
+                        <select id="reviewSort" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-custom">
+                            <option value="latest">最新优先</option>
+                            <option value="highest">评分最高</option>
+                            <option value="lowest">评分最低</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="space-y-6" id="reviewsContainer">
+                    <!-- 评价1 -->
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden mr-4">
+                                    <img src="https://picsum.photos/id/64/100/100" alt="陈阿姨" class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">陈阿姨 · 68岁</h4>
+                                    <p class="text-sm text-gray-500">老年长居康养 · 2023-10-12</p>
+                                </div>
+                            </div>
+                            <div class="flex text-accent">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"在这里住了三个月，身体好多了，每天和老姐妹们一起参加活动，生活很充实。王阿姨做的农家菜特别合胃口，都是自己种的蔬菜，健康又美味。医生每周都来检查身体，很放心。"</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">住宿舒适</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">饮食健康</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">服务周到</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 评价2 -->
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden mr-4">
+                                    <img src="https://picsum.photos/id/91/100/100" alt="李先生" class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">李先生 · 35岁</h4>
+                                    <p class="text-sm text-gray-500">上班族短途疗愈 · 2023-10-10</p>
+                                </div>
+                            </div>
+                            <div class="flex text-accent">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"连续加班一个月后，在这里度过了一个周末，简直是重生！正念冥想课让我找回了内心的平静，海边散步时的新鲜空气让肺部得到了彻底清洁。下周打算带团队来做一次团建疗愈。"</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">减压效果好</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">环境安静</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">冥想指导专业</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 评价3 -->
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden mr-4">
+                                    <img src="https://picsum.photos/id/237/100/100" alt="赵女士" class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">赵女士 · 38岁</h4>
+                                    <p class="text-sm text-gray-500">家庭康养套餐 · 2023-10-05</p>
+                                </div>
+                            </div>
+                            <div class="flex text-accent">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"国庆带父母和孩子来的，整体体验很好。父母很喜欢这里的慢生活，孩子在农场玩得很开心。唯一的小遗憾是假期人有点多，有些活动需要排队。建议平时来体验会更好。"</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">适合家庭</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">孩子喜欢</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">假期人多</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <button id="loadMoreReviews" class="bg-white hover:bg-gray-50 text-primary border border-primary px-6 py-3 rounded-full font-medium transition-custom shadow-sm hover:shadow">
+                        加载更多评价
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 预约表单 -->
+    <section id="booking" class="py-20 bg-neutral">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">预约康养体验</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">填写下方表单，开始您的乡村康养之旅</p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-8 md:p-10">
+                <form id="bookingForm">
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 font-medium mb-2">姓名</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-custom" placeholder="请输入您的姓名" required>
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-gray-700 font-medium mb-2">电话</label>
+                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-custom" placeholder="请输入您的手机号码" required>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="service" class="block text-gray-700 font-medium mb-2">预约服务</label>
+                            <select id="service" name="service" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-custom" required>
+                                <option value="">请选择服务类型</option>
+                                <option value="elder">老年长居康养</option>
+                                <option value="worker">上班族短途疗愈</option>
+                                <option value="family">家庭康养套餐</option>
+                                <option value="farm">农场认养</option>
+                                <option value="camping">自然疗愈露营</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="date" class="block text-gray-700 font-medium mb-2">预计日期</label>
+                            <input type="date" id="date" name="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-custom" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="people" class="block text-gray-700 font-medium mb-2">参与人数</label>
+                        <input type="number" id="people" name="people" min="1" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-custom" placeholder="请输入参与人数" required>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <label for="message" class="block text-gray-700 font-medium mb-2">特殊需求</label>
+                        <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-custom" placeholder="请告诉我们您的特殊需求或健康状况"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg text-lg font-medium transition-custom shadow-md hover:shadow-lg">
+                        提交预约
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-10">
+                <div>
+                    <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-6">联系我们</h2>
+                    <p class="text-gray-600 mb-8 text-lg">如果您有任何疑问或需要更多信息，欢迎通过以下方式联系我们，我们将尽快回复您</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                                <i class="fa fa-map-marker text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-1">地址</h3>
+                                <p class="text-gray-600">山东省荣成市俚岛镇（具体村庄将根据项目选址确定）</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                                <i class="fa fa-phone text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-1">电话</h3>
+                                <p class="text-gray-600">15684574168（工作日 9:00-18:00）</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                                <i class="fa fa-envelope-o text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-1">邮箱</h3>
+                                <p class="text-gray-600">1161015971@qq.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                                <i class="fa fa-weixin text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-1">微信</h3>
+                                <p class="text-gray-600">扫描下方二维码添加客服微信</p>
+                                <div class="mt-2 w-32 h-32 bg-gray-200 flex items-center justify-center">
+                                    <span class="text-gray-500 text-sm">微信二维码</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">实用信息</h3>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-md mb-6">
+                        <h4 class="font-semibold text-lg mb-4">交通指南</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fa fa-car text-primary mt-1 mr-3"></i>
+                                <span>自驾：从荣成市区出发，导航至俚岛镇，约30分钟车程</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-bus text-primary mt-1 mr-3"></i>
+                                <span>公交：荣成市区乘坐X11路公交至俚岛镇站下车，换乘当地班车</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-taxi text-primary mt-1 mr-3"></i>
+                                <span>接送服务：可预约高铁站/汽车站接送，50元/人</span>
+                            </li>
+                        </ul>
+                        <a href="transport-detail.html" class="inline-block text-primary font-medium hover:text-primary/80 transition-custom mt-4">
+                            查看详细交通指南 <i class="fa fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <h4 class="font-semibold text-lg mb-4">康养须知</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fa fa-medkit text-primary mt-1 mr-3"></i>
+                                <span>老年用户：请提前告知健康状况，建议携带常用药品</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-suitcase text-primary mt-1 mr-3"></i>
+                                <span>建议携带：宽松衣物、防滑鞋、个人洗漱用品</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-clock-o text-primary mt-1 mr-3"></i>
+                                <span>作息安排：遵循自然规律，建议早睡早起，体验乡村生活</span>
+                            </li>
+                        </ul>
+                        <a href="guide-detail.html" class="inline-block text-primary font-medium hover:text-primary/80 transition-custom mt-4">
+                            查看完整康养指南 <i class="fa fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fa fa-leaf text-primary text-2xl"></i>
+                        <span class="text-xl font-bold">俚岛康养</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">在田野与海岸间，找回生活的松弛感</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-custom">
+                            <i class="fa fa-weibo text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-custom">
+                            <i class="fa fa-weixin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-custom">
+                            <i class="fa fa-instagram text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-custom">首页</a></li>
+                        <li><a href="#packages" class="text-gray-400 hover:text-white transition-custom">康养套餐</a></li>
+                        <li><a href="#farm" class="text-gray-400 hover:text-white transition-custom">农场认养</a></li>
+                        <li><a href="#experiences" class="text-gray-400 hover:text-white transition-custom">场景体验</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-custom">关于我们</a></li>
+                        <li><a href="#reviews" class="text-gray-400 hover:text-white transition-custom">用户评价</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">服务支持</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-custom">联系我们</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition-custom">常见问题</a></li>
+                        <li><a href="policy.html" class="text-gray-400 hover:text-white transition-custom">预约政策</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white transition-custom">隐私政策</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">订阅更新</h3>
+                    <p class="text-gray-400 mb-4">订阅我们的 newsletter，获取最新活动和优惠信息</p>
+                    <form class="flex">
+                        <input type="email" placeholder="您的邮箱地址" class="px-4 py-2 rounded-l-lg w-full focus:outline-none text-dark">
+                        <button type="submit" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-r-lg transition-custom">
+                            <i class="fa fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
+                <p>&copy; 2023 俚岛乡村康养项目 - 大学生创业团队 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 回到顶部按钮 -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-primary hover:bg-primary/90 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-custom opacity-0 invisible">
+        <i class="fa fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // 移动端菜单切换
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuBtn.innerHTML = mobileMenu.classList.contains('hidden') 
+                ? '<i class="fa fa-bars"></i>' 
+                : '<i class="fa fa-times"></i>';
+        });
+        
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('py-2', 'shadow-md');
+                navbar.classList.remove('py-3', 'shadow-sm');
+            } else {
+                navbar.classList.add('py-3', 'shadow-sm');
+                navbar.classList.remove('py-2', 'shadow-md');
+            }
+        });
+        
+        // 农场认养标签切换
+        const farmTabs = document.querySelectorAll('.farm-tab');
+        const farmContents = document.querySelectorAll('.farm-content');
+        
+        farmTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // 移除所有活跃状态
+                farmTabs.forEach(t => {
+                    t.classList.remove('active', 'bg-primary', 'text-white');
+                    t.classList.add('bg-gray-200', 'hover:bg-gray-300');
+                });
+                
+                // 添加当前活跃状态
+                tab.classList.add('active', 'bg-primary', 'text-white');
+                tab.classList.remove('bg-gray-200', 'hover:bg-gray-300');
+                
+                // 这里可以添加内容切换逻辑
+                // 实际项目中应该根据标签切换不同的内容
+            });
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // 关闭移动端菜单
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    menuBtn.innerHTML = '<i class="fa fa-bars"></i>';
+                }
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 回到顶部按钮
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+                backToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+                backToTopBtn.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 预约表单提交处理
+        const bookingForm = document.getElementById('bookingForm');
+        
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // 简单表单验证
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            
+            if (name && phone) {
+                // 模拟表单提交
+                alert('预约提交成功！我们将尽快与您联系确认详情。');
+                bookingForm.reset();
+            } else {
+                alert('请填写姓名和手机号码');
+            }
+        });
+        
+        // 评价系统 - 星级评分
+        const ratingStars = document.querySelectorAll('.rating-star');
+        const ratingValue = document.getElementById('ratingValue');
+        
+        ratingStars.forEach(star => {
+            star.addEventListener('mouseover', () => {
+                const rating = parseInt(star.getAttribute('data-rating'));
+                highlightStars(rating);
+            });
+            
+            star.addEventListener('mouseout', () => {
+                const currentRating = parseInt(ratingValue.value);
+                highlightStars(currentRating || 0);
+            });
+            
+            star.addEventListener('click', () => {
+                const rating = parseInt(star.getAttribute('data-rating'));
+                ratingValue.value = rating;
+                highlightStars(rating);
+            });
+        });
+        
+        function highlightStars(rating) {
+            ratingStars.forEach(star => {
+                const starRating = parseInt(star.getAttribute('data-rating'));
+                if (starRating <= rating) {
+                    star.classList.remove('text-gray-300');
+                    star.classList.add('text-accent');
+                } else {
+                    star.classList.remove('text-accent');
+                    star.classList.add('text-gray-300');
+                }
+            });
+        }
+        
+        // 评价表单提交
+        const reviewForm = document.getElementById('reviewForm');
+        
+        reviewForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // 验证评分
+            if (parseInt(ratingValue.value) === 0) {
+                alert('请给出您的评分');
+                return;
+            }
+            
+            // 获取表单数据
+            const name = document.getElementById('reviewName').value;
+            const service = document.getElementById('reviewService').options[document.getElementById('reviewService').selectedIndex].text;
+            const content = document.getElementById('reviewContent').value;
+            const rating = parseInt(ratingValue.value);
+            
+            // 模拟提交成功
+            alert('感谢您的评价！您的反馈对我们非常重要。');
+            
+            // 创建新评价元素并添加到列表顶部
+            const reviewsContainer = document.getElementById('reviewsContainer');
+            
+            // 生成星级HTML
+            let starsHtml = '';
+            for (let i = 1; i <= 5; i++) {
+                starsHtml += i <= rating ? '<i class="fa fa-star"></i>' : '<i class="fa fa-star-o"></i>';
+            }
+            
+            // 获取当前日期
+            const today = new Date();
+            const dateString = today.getFullYear() + '-' + 
+                              (today.getMonth() + 1).toString().padStart(2, '0') + '-' + 
+                              today.getDate().toString().padStart(2, '0');
+            
+            // 创建新评价HTML
+            const newReviewHtml = `
+                <div class="bg-white p-6 rounded-xl shadow-md animate-fadeIn">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden mr-4">
+                                <img src="https://picsum.photos/id/${Math.floor(Math.random() * 100)}/100/100" alt="${name}" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">${name}</h4>
+                                <p class="text-sm text-gray-500">${service} · ${dateString}</p>
+                            </div>
+                        </div>
+                        <div class="flex text-accent">
+                            ${starsHtml}
+                        </div>
+                    </div>
+                    <p class="text-gray-600">${content}</p>
+                </div>
+            `;
+            
+            // 添加到评价列表顶部
+            reviewsContainer.insertAdjacentHTML('afterbegin', newReviewHtml);
+            
+            // 重置表单
+            reviewForm.reset();
+            ratingValue.value = 0;
+            highlightStars(0);
+        });
+        
+        // 加载更多评价
+        const loadMoreBtn = document.getElementById('loadMoreReviews');
+        let reviewCount = 3; // 当前已有3条评价
+        
+        loadMoreBtn.addEventListener('click', () => {
+            // 模拟加载更多评价
+            const reviewsContainer = document.getElementById('reviewsContainer');
+            const services = ['老年长居康养', '上班族短途疗愈', '家庭康养套餐', '农场认养', '自然疗愈露营', '文化康养之旅'];
+            const contents = [
+                "非常棒的体验，环境优美，服务周到，下次还会再来。",
+                "这里的空气特别清新，远离城市喧嚣，很适合放松身心。",
+                "工作人员都很热情，活动安排得很合理，学到了很多健康知识。",
+                "带着孩子来的，他在农场玩得很开心，还认识了很多植物。",
+                "住宿条件超出预期，干净舒适，很有乡村特色。"
+            ];
+            
+            // 每次加载2条评价
+            for (let i = 0; i < 2; i++) {
+                const rating = Math.floor(Math.random() * 2) + 4; // 4或5星
+                const serviceIndex = Math.floor(Math.random() * services.length);
+                const contentIndex = Math.floor(Math.random() * contents.length);
+                const randomId = Math.floor(Math.random() * 100);
+                
+                // 生成星级HTML
+                let starsHtml = '';
+                for (let j = 1; j <= 5; j++) {
+                    starsHtml += j <= rating ? '<i class="fa fa-star"></i>' : '<i class="fa fa-star-o"></i>';
+                }
+                
+                // 随机日期（近30天内）
+                const today = new Date();
+                const randomDays = Math.floor(Math.random() * 30);
+                const reviewDate = new Date(today);
+                reviewDate.setDate(today.getDate() - randomDays);
+                const dateString = reviewDate.getFullYear() + '-' + 
+                                  (reviewDate.getMonth() + 1).toString().padStart(2, '0') + '-' + 
+                                  reviewDate.getDate().toString().padStart(2, '0');
+                
+                const newReviewHtml = `
+                    <div class="bg-white p-6 rounded-xl shadow-md animate-fadeIn">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden mr-4">
+                                    <img src="https://picsum.photos/id/${randomId}/100/100" alt="用户头像" class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">用户${reviewCount + i + 1}</h4>
+                                    <p class="text-sm text-gray-500">${services[serviceIndex]} · ${dateString}</p>
+                                </div>
+                            </div>
+                            <div class="flex text-accent">
+                                ${starsHtml}
+                            </div>
+                        </div>
+                        <p class="text-gray-600">${contents[contentIndex]}</p>
+                    </div>
+                `;
+                
+                reviewsContainer.insertAdjacentHTML('beforeend', newReviewHtml);
+            }
+            
+            reviewCount += 2;
+            
+            // 模拟数据加载完成
+            if (reviewCount >= 10) {
+                loadMoreBtn.textContent = "没有更多评价了";
+                loadMoreBtn.disabled = true;
+                loadMoreBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+        });
+        
+        // 评价筛选和排序
+        const reviewFilter = document.getElementById('reviewFilter');
+        const reviewSort = document.getElementById('reviewSort');
+        
+        reviewFilter.addEventListener('change', filterReviews);
+        reviewSort.addEventListener('change', sortReviews);
+        
+        function filterReviews() {
+            // 实际项目中应该根据筛选条件过滤评价
+            alert(`已筛选：${reviewFilter.options[reviewFilter.selectedIndex].text}`);
+        }
+        
+        function sortReviews() {
+            // 实际项目中应该根据排序条件重新排序评价
+            alert(`已排序：${reviewSort.options[reviewSort.selectedIndex].text}`);
+        }
+    </script>
+</body>
+</html>
+    
